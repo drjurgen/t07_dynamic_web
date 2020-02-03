@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03 goddag</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <h1>Tjek inspect for løsning</h1>
+
+    <p id="time_output"></p>
+
+    <script>
+        let time = new Date().getHours();
+
+        if (time >= 5 && time < 10) {
+            document.querySelector("#time_output").innerHTML = `klokken er ${time}, godmorgen`;
+            console.log(`klokken er ${time}, godmorgen`);
+        } else if (time >= 10 && time < 18) {
+            document.querySelector("#time_output").innerHTML = `klokken er ${time}, goddag`;
+            console.log(`klokken er ${time}, goddag`);
+        } else if (time >= 18 && time < 24) {
+            document.querySelector("#time_output").innerHTML = `klokken er ${time}, godaften`;
+            console.log(`klokken er ${time}, godaften`);
+        } else if (time >= 0 && time < 5) {
+            document.querySelector("#time_output").innerHTML = `klokken er ${time}, godnat`;
+            console.log(`klokken er ${time}, godnat`);
+        }
+
+    </script>
+</body>
+
+</html>

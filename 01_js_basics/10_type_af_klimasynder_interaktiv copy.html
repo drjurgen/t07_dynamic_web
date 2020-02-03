@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 Udregn bmi i interaktiv dialog med bruger</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <h1>Tjek inspect for løsning</h1>
+
+    <p>Angiv din rejsetid i timer</p>
+    <input type="text" id="rejse_tid">
+    <button>Klik her og tjek inspector</button>
+    <p id="c02_output"></p>
+
+    <script>
+        document.querySelector("button").addEventListener("click", buttonClicked);
+
+        function buttonClicked() {
+            let rejseTid = document.querySelector("#rejse_tid").value;
+            let co2 = rejseTid * 109;
+
+            if (isNaN(rejseTid) || rejseTid == 0) {
+                //document.querySelector("#c02_output").innerHTML = `Angiv venligst et gyldigt input!`;
+                console.log("Angiv venligst en gyldigt værdig!");
+            } else {
+                //document.querySelector("#c02_output").innerHTML = `Du vil udlede ${co2} kg CO2 på ${rejseTid} timer!`;
+                console.log(`Du vil udlede ${co2} kg CO2 på ${rejseTid} timer!`);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

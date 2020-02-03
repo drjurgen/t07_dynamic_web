@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08 CO2</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <h1>Tjek inspect for løsning</h1>
+
+    <p id="c02_output"></p>
+
+    <script>
+        let rejseTid = 4;
+
+        let co2 = rejseTid * 109;
+
+        document.querySelector("#c02_output").innerHTML = `Du har udledt ${co2} kg CO2 på ${rejseTid} time(r)`;
+        console.log(co2);
+
+    </script>
+</body>
+
+</html>
