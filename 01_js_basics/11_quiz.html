@@ -4,20 +4,101 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>10 Udregn bmi i interaktiv dialog med bruger</title>
+    <title>11 Quiz</title>
     <link rel="stylesheet" href="">
 </head>
 
 <body>
-    <h1>Tjek inspect for løsning</h1>
+    <h1>Det store quiz spil</h1>
 
-    <p>Angiv din rejsetid i timer</p>
-    <input type="text" id="rejse_tid">
-    <button>Klik her og tjek inspector</button>
-    <p id="c02_output"></p>
+    <p id="question"></p>
+    <input type="text" id="answer">
+    <button>Tjek svar</button>
+    <p id="question_output"></p>
+    <p id="score"></p>
 
     <script>
+        window.addEventListener("load", loadQuestions);
+        document.querySelector("button").addEventListener("click", buttonClicked);
 
+        let point = 0;
+        let questionCounter = 1;
+        let answerInput = document.querySelector("#answer");
+        let quizOutput = document.querySelector("#question_output");
+
+        let question1 = "Hvad hedder sproget denne Quiz er skrevet i?";
+        let question2 = "Hvad hedder baren på denne skole?";
+        let question3 = "hvilken ugedag var det, da vi startede på 2. semester?";
+        let question4 = "hvilket lokale har vi undervisning i?";
+        let question5 = "Hvilken addresse har skolen?";
+
+        function loadQuestions() {
+            if (questionCounter == 1) {
+                document.querySelector("#question").innerHTML = question1;
+            } else if (questionCounter == 2) {
+                document.querySelector("#question").innerHTML = question2;
+            } else if (questionCounter == 3) {
+                document.querySelector("#question").innerHTML = question3;
+            } else if (questionCounter == 4) {
+                document.querySelector("#question").innerHTML = question4;
+            } else if (questionCounter == 5) {
+                document.querySelector("#question").innerHTML = question5;
+            }
+
+        }
+
+        function buttonClicked() {
+            if (questionCounter == 1) {
+                if (answerInput.value == "JavaScript" || answerInput.value == "javascript" || answerInput.value == "Javascript") {
+                    quizOutput.innerHTML = "Korrekt, det er JavaScript!";
+                    point++;
+                } else {
+                    quizOutput.innerHTML = "Forkert, det er JavaScript!";
+                }
+            }
+
+            if (questionCounter == 2) {
+                if (answerInput.value == "moon bar" || answerInput.value == "Moon Bar" || answerInput.value == "MoonBar" || answerInput.value == "Moon bar") {
+                    quizOutput.innerHTML = "Korrekt, det er Moon Bar!";
+                    point++;
+                } else {
+                    quizOutput.innerHTML = "Forkert, det er Moon Bar!";
+                }
+            }
+
+            if (questionCounter == 3) {
+                if (answerInput.value == "mandag" || answerInput.value == "Mandag") {
+                    quizOutput.innerHTML = "Korrekt, det var mandag!";
+                    point++;
+                } else {
+                    quizOutput.innerHTML = "Forkert, det var mandag!";
+                }
+            }
+
+            if (questionCounter == 4) {
+                if (answerInput.value == "A207" || answerInput.value == "a207" || answerInput.value == "A 207") {
+                    quizOutput.innerHTML = "Korrekt, det er A207!";
+                    point++;
+                } else {
+                    quizOutput.innerHTML = "Forkert, det er A207!";
+                }
+            }
+
+            if (questionCounter == 5) {
+                if (answerInput.value == "Lygten 16" || answerInput.value == "lygten 16") {
+                    quizOutput.innerHTML = "Korrekt, det er Lygten 16!";
+                    point++;
+                } else {
+                    quizOutput.innerHTML = "Forkert, det er Lygten 16!";
+                }
+                document.querySelector("#question").innerHTML = "Der er ikke flere spørgsmål";
+                document.querySelector("#score").innerHTML = `Du fik ${point} point i denne quiz. Godt gået!`;
+            }
+
+            answerInput.value = "";
+            questionCounter++;
+            loadQuestions();
+        }
 
     </script>
 </body>
