@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05 stuff</title>
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+
+        div:first-child {
+            background-color: green;
+        }
+
+        div:nth-child(2) {
+            background-color: red;
+            border-radius: 50%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div></div>
+    <div></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+        function start() {
+            const firkant = document.querySelector("div");
+            const cirkel = document.querySelector("div:nth-child(2)");
+
+            let frø = `http://mabe-kea.dk/E19/pics/frog.png`;
+            let gris = `http://mabe-kea.dk/E19/pics/pig.png`;
+
+            firkant.innerHTML = `<img src= ${frø} >`;
+            cirkel.innerHTML = `<img src= ${gris} >`;
+        }
+
+    </script>
+</body>
+
+</html>
