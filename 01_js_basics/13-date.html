@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13 Date stuff</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <input type="text" id="your_age">
+    <input type="text" id="date_age">
+    <button>Klik her og tjek inspector</button>
+
+    <script>
+        document.querySelector("button").addEventListener("click", buttonClicked);
+
+        let yourAge = document.querySelector("#your_age");
+        let dateAge = document.querySelector("#date_age");
+
+
+        function buttonClicked() {
+            console.log(yourAge.value);
+            console.log(dateAge.value);
+
+            let yourRule = (dateAge.value / 2 + 7);
+            let dateRule = (yourAge.value / 2 + 7);
+
+            //Check for pedofiles
+            if (yourAge.value < 15 || dateAge.value < 15) {
+                console.log("NIKS PILLE!");
+            } else if (yourAge.value < yourRule || yourAge > yourRule) {
+                console.log("Din date overholder ikke reglen");
+            } else if (dateAge.value < dateRule || dateAge > dateRule) {
+                console.log("Du overholder ikke reglen");
+            } else {
+                console.log("Reglen overholdes");
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>
