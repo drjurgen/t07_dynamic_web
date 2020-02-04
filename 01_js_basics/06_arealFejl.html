@@ -9,29 +9,28 @@
 </head>
 
 <body>
+    <p>Indtast længde
+        <input type="number" id="længde"></p>
+    <p>Indtast bredde
+        <input type="number" id="bredde"></p>
+    <button>Klik her og tjek inspector</button>
+    <p id="areal_output"></p>
+
 
     <script>
-        let længde = prompt("Angiv længde");
-        let bredde = prompt("Angiv bredde");
+        document.querySelector("button").addEventListener("click", buttonClicked);
 
-        function areal(l, b) {
-            let a = (l * b);
+        function buttonClicked() {
+            let længde = document.querySelector("#længde").value;
+            let bredde = document.querySelector("#bredde").value;
 
-            if (a == 0) {
-                return (`Husk længde og bredde`);
-            } else if (isNaN(a)) {
-                return (`Angiv venligst en gyldig værdig`);
+            let resultat = længde * bredde;
+
+            if (længde <= 0 || bredde <= 0) {
+                console.log("Indtast gyldigt input");
             } else {
-                return (`Arealet er ${a}. Vil du lave et nyt areal?`)
+                console.log("Resultatet er: " + resultat);
             }
-        }
-
-        let resultat = areal(længde, bredde);
-
-        confirm(resultat);
-
-        if (confirm) {
-            location.reload();
         }
 
     </script>
