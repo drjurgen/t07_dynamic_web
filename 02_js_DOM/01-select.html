@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>01 stuff</title>
+</head>
+
+<body>
+
+    <section id="content">
+
+        <div><a href="https://kea.dk/">KEA's hjemmeside</a></div>
+        <div><a href="https://github.com/drjurgen/t07_dynamic_web/tree/master/">Github repository</a></div>
+        <div><img src="http://mabe-kea.dk/E19/pics/frog.png" alt="frog"></div>
+
+    </section>
+
+    <script>
+        const content = document.querySelector("#content");
+        const div1 = document.querySelector("div");
+        const div2 = document.querySelector("div:nth-child(2)");
+        const div3 = document.querySelector("div:nth-child(3)");
+        const keaLink = document.querySelector("a");
+        const github = document.querySelector("div + div a");
+        const frog = document.querySelector("img");
+
+        console.log(content);
+        console.log(div1);
+        console.log(div2);
+        console.log(div3);
+        console.log(keaLink);
+        console.log(github);
+        console.log(frog);
+
+    </script>
+
+</body>
+
+</html>
