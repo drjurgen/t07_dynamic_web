@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09 array</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <ul id="display">
+    </ul>
+
+
+
+    <script>
+        let playlist = ["Starlite", "Don't Run", "Ingen Problemer", "Langt Væk", "Pink Cocaina", "4u/Lately", "Cherie", "Cascade", "58 in the Rain", "That Age Is Gone Now, Pt.1"];
+
+        playlist.forEach(sang => {
+            document.querySelector("#display").innerHTML += `${sang} <br>`;
+        });
+
+    </script>
+</body>
+
+</html>
