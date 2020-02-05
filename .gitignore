@@ -5,3 +5,7 @@
 /node_modules/
 *.pdf
 *.mp4
+*.docx
+*.pptx
+*.xd
+*.psd
