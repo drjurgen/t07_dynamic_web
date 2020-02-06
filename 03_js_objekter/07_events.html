@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07 Events</title>
+    <link rel="stylesheet" href="">
+
+    <style>
+        article {
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+
+<body>
+    <section id="container"></section>
+    <template>
+        <article>
+            <h3></h3>
+            <img src="" alt="">
+            <p></p>
+            <p></p>
+        </article>
+    </template>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            let post = [{
+                    "overskrift": "Kampen Fortsætter",
+                    "tekst": "Kampen mod kæmpe-bjørneklo startede i 2010 med den første indsatsplan for bekæmpelse af kæmpe-bjørneklo. Siden da er mange bestande blevet udryddet eller formindsket kraftigt, men der er også fundet mange nye. Så planten findes stadig i kommunen.",
+                    "billede": "https://dit-roskilde.dk/wp-content/uploads/2020/01/Kpebjorneklo-200x150.jpg",
+                    "dato": "2. februar 2020"
+                },
+
+                {
+                    "overskrift": "Er din hud tør og trist?",
+                    "tekst": "NY behandling fra Phytomer – HYDRA ORIGINAL Plumping Moisturing Facial med ØKOLOGISKE alger – Så er din hud tør og trist, så kan du booke din tid hos Klinik Rosenvold. Så er du godt i gang med denne innovative ansigtsbehandling!",
+                    "billede": "https://dit-roskilde.dk/wp-content/uploads/2020/02/IMG_E6818-200x150.jpg",
+                    "dato": "2. februar 2020"
+                },
+
+                {
+                    "overskrift": "I dag er en ganske særlig dag",
+                    "tekst": "”Som talnørd kan jeg næsten ikke vente,” skriver vores læser Dorthe Falck, der her beskriver, hvorfor første søndag i februar er en ganske særlig dag.",
+                    "billede": "https://dit-roskilde.dk/wp-content/uploads/2020/02/02022020-foto-dorthe-falck-200x150.png",
+                    "dato": "2. februar 2020"
+                },
+
+                {
+                    "overskrift": "Ældre skal lære udlændinge dansk",
+                    "tekst": "Ældre, som har ressourcerne, men ikke er så mobile, får nu mulighed for at hjælpe andre gennem frivilligt arbejde. De kan hver uge få besøg af en udlænding, som kommer for at øve sig i hverdagsdansk. Den socialøkonomiske virksomhed,",
+                    "billede": "https://dit-roskilde.dk/wp-content/uploads/2020/01/custom1-2-200x150.jpg",
+                    "dato": "2. februar 2020"
+                },
+
+                {
+                    "overskrift": "Byttemarked",
+                    "tekst": "GIV HVAD DU HAR – TAG HVAD DU KAN BRUGE. Sådan foregår det på Byttemarkedet den 16 februar 2020, når Søndag på Kildegården og Kildegården Roskilde danner rammerne for et godt tiltag.",
+                    "billede": "https://dit-roskilde.dk/wp-content/uploads/2020/01/82752710_150594223060664_7698577008036413440_n-200x150.jpg",
+                    "dato": "1. februar 2020"
+                }
+            ];
+
+            let container = document.querySelector("#container");
+            let postTemplate = document.querySelector("template");
+            let article = document.querySelector("article");
+
+            post.forEach(enkeltPost => {
+                let klon = postTemplate.cloneNode(true).content;
+                klon.querySelector("h3").textContent = enkeltPost.overskrift;
+                klon.querySelector("p").textContent += enkeltPost.tekst;
+                klon.querySelector("img").src = enkeltPost.billede;
+                klon.querySelector("p:last-child").textContent += enkeltPost.dato;
+                container.appendChild(klon);
+            });
+
+            console.log(post);
+        });
+
+    </script>
+</body>
+
+</html>
