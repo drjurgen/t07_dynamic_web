@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Øvelse 6 - Filter stuff</title>
+    <link rel="stylesheet" href="">
+
+    <style>
+        article {
+            border: 1px solid black;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        main {}
+
+        #container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-column-gap: 15px;
+            grid-row-gap: 15px;
+        }
+
+        article {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        article p,
+        article h2,
+        article img {
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            padding-bottom: 25px;
+        }
+
+        .valgt {
+            background-color: blue;
+            opacity: 60%;
+            color: white;
+        }
+
+        #vis_filter {
+            text-align: center;
+        }
+
+        button:focus {
+            outline: 0;
+        }
+
+        #detalje {
+            overflow: scroll;
+            position: fixed;
+            width: 100vw;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .5);
+            z-index: 10;
+            left: 0;
+            top: 0;
+        }
+
+        #person-detalje {
+            margin: 3em;
+            padding: 2em;
+            background-color: #fff;
+        }
+
+        #detalje button {
+            margin: .5em;
+            font-size: 2rem;
+        }
+
+        .skjul {
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1 id="vis_filter">viser: Alle</h1>
+    <nav>
+        <button class="filter valgt" data-køn="alle">Alle</button>
+        <button class="filter" data-køn="m">Mænd</button>
+        <button class="filter" data-køn="k">Kvinde</button>
+        <button class="filter" data-køn="andet">Andet</button>
+    </nav>
+
+    <nav>
+        <button class="filter_alder" data-alder="0">Vis alle</button>
+        <button class="filter_alder" data-alder="55">Vis dem over 55</button>
+    </nav>
+
+    <section id="container"></section>
+    <template>
+        <article id="" class="person">
+            <h2></h2>
+            <img src="" alt="">
+            <p>Køn: </p>
+            <p>Alder: </p>
+        </article>
+    </template>
+
+
+
+    <script>
+        const endpoint = "https://spreadsheets.google.com/feeds/list/1XWWbfWszD7f4jHqp51V_oT3pkHuR-ceEUw4YtrvK7F0/od6/public/values?alt=json";
+
+        let personer = [];
+        let filterKnap = document.querySelectorAll(".filter");
+        let filterAlder = document.querySelectorAll(".filter_alder");
+        let køn = "alle";
+        let alder = 0;
+        document.addEventListener("DOMContentLoaded", start);
+
+
+        function start() {
+            hentData();
+            filterKnap.forEach(knap => {
+                knap.addEventListener("click", filtrering);
+            });
+
+            filterAlder.forEach(knap => {
+                knap.addEventListener("click", filtreringAlder);
+            });
+        }
+
+        async function hentData() {
+            const response = await fetch(endpoint);
+            personer = await response.json();
+            console.log(personer);
+            visPersoner();
+        }
+
+        function filtrering() {
+            console.log("filtrering");
+
+            filterKnap.forEach(knap => {
+                knap.classList.remove("valgt");
+            });
+
+            this.classList.add("valgt");
+
+            køn = this.dataset.køn;
+            document.querySelector("#vis_filter").textContent = "viser: " + this.textContent;
+
+            visPersoner();
+
+        }
+
+        function filtreringAlder() {
+            console.log("filtrering Alder");
+
+            filterAlder.forEach(knap => {
+                knap.classList.remove("valgt");
+            });
+
+            this.classList.add("valgt");
+
+            alder = parseInt(this.dataset.alder);
+            parseInt(alder);
+            console.log(alder);
+            visPersoner();
+        }
+
+
+
+        function visPersoner() {
+            let container = document.querySelector("#container");
+            let personTemplate = document.querySelector("template");
+            let article = document.querySelector("article");
+
+            container.innerHTML = "";
+
+            personer.feed.entry.forEach(person => {
+                if ((køn == "alle" || person.gsx$sex.$t == køn) && (person.gsx$alder.$t > alder)) {
+                    let klon = personTemplate.cloneNode(true).content;
+                    klon.querySelector("h2").textContent = person.gsx$navn.$t + " " + person.gsx$efternavn.$t;
+                    klon.querySelector("img").src = person.gsx$billede.$t;
+                    klon.querySelector("p").textContent += person.gsx$sex.$t;
+                    klon.querySelector("p:last-child").textContent += person.gsx$alder.$t;
+
+                    klon.querySelector(".person").addEventListener("click", () => {
+                        location.href = `detalje.html?id=${person.gsx$id.$t}`;
+                        //visDetalje(person);
+                    });
+                    container.appendChild(klon);
+                }
+            });
+
+        }
+
+    </script>
+</body>
+
+</html>
